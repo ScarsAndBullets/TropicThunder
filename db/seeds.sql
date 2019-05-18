@@ -1,9 +1,9 @@
 USE vshunt_db;
 
-INSERT INTO users (user_name, password) VALUES ('John', 'b00tcamp');
-INSERT INTO users (user_name, password) VALUES ('Robyn', 'b00tcamp');
-INSERT INTO users (user_name, password) VALUES ('Brandon', 'b00tcamp');
-INSERT INTO users (user_name, password) VALUES ('Stewart', 'b00tcamp');
+INSERT INTO users (user_name) VALUES ('John', );
+INSERT INTO users (user_name) VALUES ('Robyn');
+INSERT INTO users (user_name) VALUES ('Brandon');
+INSERT INTO users (user_name) VALUES ('Stewart');
 
 INSERT INTO hunts (hunt_name) VALUES ('TourSLC');
 INSERT INTO hunts (hunt_name) VALUES ('Casa de Robyn');
