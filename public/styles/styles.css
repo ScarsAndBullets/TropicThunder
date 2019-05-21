@@ -1,3 +1,16 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+#create {
+  text-align: center;
+}
+
+#home {
+  text-align: center;
+}
+
+form { 
+margin: 0 auto; 
+width:250px;
+}
