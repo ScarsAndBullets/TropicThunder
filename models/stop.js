@@ -1,16 +1,16 @@
 module.exports = function (sequelize, DataTypes) {
-  var Stops = sequelize.define("Stops", {
-    stop_type: {
+  var Stop = sequelize.define("Stop", {
+    stopType: {
       type: DataTypes.STRING,
       allowNull: false,
       len: [1]
     },
-    hunt_type: {
+    huntType: {
       type: DataTypes.STRING,
       allowNull: false,
       len: [1]
     },
-    stop_name: {
+    stopName: {
       type: DataTypes.STRING,
       allowNull: false,
       len: [1]
@@ -20,7 +20,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       len: [1]
     },
-    correct_answer: {
+    correctAnswer: {
       type: DataTypes.STRING,
       allowNull: false,
       len: [1]
@@ -30,16 +30,16 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       len: [1]
     },
-    qr_code: {
+    qrCode: {
       type: DataTypes.STRING,
       allowNull: false,
       len: [1]
     }
   });
 
-  Stops.associate = function (models) {
-    Stops.belongsTo(models.Hunts);
+  Stop.associate = function (models) {
+    Stop.belongsTo(models.Hunt);
   };
 
-  return Stops;
+  return Stop;
 };
