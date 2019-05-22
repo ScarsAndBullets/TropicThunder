@@ -18,3 +18,8 @@ width:250px;
 input {
   text-align: center;
 }
+
+img {
+  height: 400px;
+  width: 400px;
+}
