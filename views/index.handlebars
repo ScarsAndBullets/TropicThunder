@@ -4,14 +4,15 @@
       <div class="col-8 offset-2">
         <h1>{{msg}}</h1>
         <br>
-        <img src="http://via.placeholder.com/640x360" alt="hunt_logo">
+        <img href="../assets/images/vsh_logo-betterVS.png" alt="hunt_logo">
         <br>
         <br>
         <h3>Enter Code</h3>
         <form class="form-inline">
           <div class="form-group">
             {{!-- <label for="inputPassword6">Insert Game Code Here:</label> --}}
-            <input type="password" id="game-code" class="form-control mx-sm-3" aria-describedby="passwordHelpInline">
+            <input type="text" inputmode="numeric" minlength="9" maxlength="11" class="form-control mx-sm-3"
+              aria-describedby="passwordHelpInline" id="tbNum" onkeyup="addHyphen(this)">
             {{!-- <small id="passwordHelpInline" class="text-muted">
               Must be 8-20 characters long.
             </small> --}}
@@ -36,3 +37,13 @@
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
+
+<script>
+  function addHyphen(element) {
+    let ele = document.getElementById(element.id);
+    ele = ele.value.split('-').join('');    // Remove dash (-) if mistakenly entered.
+
+    let finalVal = ele.match(/.{1,3}/g).join('-');
+    document.getElementById(element.id).value = finalVal;
+  }
+</script>
