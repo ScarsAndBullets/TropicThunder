@@ -5,30 +5,27 @@ CREATE DATABASE vshunt_db;
 USE vshunt_db;
 
 CREATE TABLE users (
-    user_id INT AUTO_INCREMENT,
-    user_name VARCHAR(20) NOT NULL,
-    firebase_id VARCHAR(20),
-    PRIMARY KEY (user_id)
+    UserId INT AUTO_INCREMENT,
+    userName VARCHAR(20) NOT NULL,
+    firebaseId VARCHAR(20),
+    PRIMARY KEY (UserId)
 );
 
 CREATE TABLE hunts (
-    hunt_id INT AUTO_INCREMENT,
-    hunt_name VARCHAR(100) NOT NULL,
-    hunt_type VARCHAR(50),
-    PRIMARY KEY (hunt_id)
+    HuntId INT AUTO_INCREMENT,
+    huntName VARCHAR(100) NOT NULL,
+    huntType VARCHAR(50),
+    PRIMARY KEY (HuntId)
 );
 
 CREATE TABLE stops (
-    stop_id INT AUTO_INCREMENT,
-    hunt_id INT NOT NULL,
-    stop_type VARCHAR(50),
-    stop_name VARCHAR(100),
+    StopId INT AUTO_INCREMENT,
+    HuntId INT NOT NULL,
+    huntType VARCHAR(50),
+    stopName VARCHAR(100),
     clue VARCHAR(250) NOT NULL,
-    correct_answer VARCHAR(150) NOT NULL,
-    wrong_answer1 VARCHAR(150),
-    wrong_answer2 VARCHAR(150),
-    wrong_answer3 VARCHAR(150),
+    correctAnswer VARCHAR(150) NOT NULL,
     geolocation VARCHAR(150),
-    qr_code VARCHAR(150),
-    PRIMARY KEY (stop_id)
+    qrCode VARCHAR(150),
+    PRIMARY KEY (StopId)
 );
