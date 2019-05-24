@@ -37,9 +37,5 @@ module.exports = function (sequelize, DataTypes) {
     }
   });
 
-  Stop.associate = function (models) {
-    Stop.belongsTo(models.Hunt);
-  };
-
   return Stop;
 };

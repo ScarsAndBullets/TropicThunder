@@ -17,7 +17,6 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   Hunt.associate = function (models) {
-    Hunt.belongsTo(models.User);
     Hunt.hasMany(models.Stop);
   };
 
