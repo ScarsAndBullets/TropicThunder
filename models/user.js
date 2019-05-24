@@ -10,6 +10,7 @@ module.exports = function (sequelize, DataTypes) {
     firebaseId: {
       type: DataTypes.STRING,
       allowNull: false,
+      defaultValue: '12345678',
       validate: {
         len: [8]
       }

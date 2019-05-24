@@ -9,10 +9,10 @@ module.exports = function (sequelize, DataTypes) {
     },
     huntType: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
+      allowNull: true,
+      // validate: {
+      //   len: [1]
+      // }
     }
   });
 
@@ -23,3 +23,4 @@ module.exports = function (sequelize, DataTypes) {
 
   return Hunt;
 };
+
