@@ -1,0 +1,74 @@
+<div id="home">
+  <div class="container">
+    <div class="row">
+      <div class="col-8 offset-2">
+        {{!-- msg from htmlroutes --}}
+        <div class="text-center">
+          <h1>{{msg}}</h1>
+          <h2>Create your own hunt!</h2>
+          <br>
+        </div>
+        <p>Create each step in the hunt with the form below. Don't forget to include any important instructions in the
+          Hint/Clue itself.</p>
+        <p>Add as many steps/clues as you like! These can be in a smaller area (like a house) or even a city. Enjoy
+          creating your Virtual Scavenger Hunt!</p>
+        {{!-- is action from handlebars/bootstrap/html? --}}
+        {{!-- Name needs to be seperate from hunt item --}}
+        {{!-- <form class="clearfix mb-4" action="POST">
+          <div class="form-group">
+            <label for="example-text">Name your Hunt!</label>
+            <input type="text" id="Example Hunt" class="form-control" aria-describedby="example-text"
+              placeholder="Hunt Name">
+          </div> --}}
+        {{!-- change to inline --}}
+        <div class="row">
+          <div class="col-7">
+            <label for="example-text">Hint/Clue</label>
+            {{!-- <p>(Don't forget to include any necessary instructions player will need for this clue.) </p> --}}
+            <input type="text" id="example-text" class="form-control" aria-describedby="example-text"
+              placeholder="Ex: How many figurines in the curio cabinet?">
+          </div>
+          <div class="col-3">
+            <label for="example-text">Answer</label>
+            <input type="text" id="example-text" class="form-control" aria-describedby="example-text"
+              placeholder="Ex: 5">
+          </div>
+          <div class="col" id="add-button">
+            <button type="submit" class="btn btn-secondary">+</button>
+            {{!-- circle btn (needs re-alignment(maybe just take out css m/p alignment)) --}}
+            {{!-- <button type="submit" class="btn btn-default btn-circle">+</button>
+ --}}
+          </div>
+        </div>
+        <br>
+        {{!-- <div class="form-group">
+            <label for="example-description">Example Description</label>
+            <textarea class="form-control" id="example-description" aria-describedby="example-description"
+              placeholder="Enter Example Description"></textarea>
+          </div> --}}
+
+        </form>
+        <h3>Your Hunt So Far:</h3>
+        <ul id="example-list" class="list-group">
+          {{!-- where is it getting the data to display? --}}
+          {{!-- may need to have two different submits --}}
+          {{#each examples}}
+            <li data-id="{{this.id}}" class="list-group-item">
+              <a href="example/{{this.id}}">{{this.text}}</a>
+              <button class="btn btn-danger float-right delete">ｘ</button>
+              <button class="btn btn-warning float-right">edit</button>
+
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <button id="submit" class="btn btn-primary btn-block">Create Your Hunt!</button>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
