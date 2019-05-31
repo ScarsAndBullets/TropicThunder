@@ -136,5 +136,29 @@ var submitHunt = function (event) {
 // $submit.on("click", handleFormSubmit);
 // $exampleList.on("click", ".delete", handleDeleteBtnClick);
 
+
+
 $submitQuestion.click(submitQuestion);
 $submitHunt.click(submitHunt);
+
+function genHuntCode() {
+  var huntCode = "";
+  for (var i = 0; i < 11; i++) {
+    if (i === 3 || i === 7) {
+      huntCode += "-";
+    } else {
+      huntCode += Math.floor(Math.random() * 10);
+    }
+  }
+  console.log("huntCode = " + huntCode);
+  return huntCode;
+}
+
+
+$(document).ready(function () {
+  console.log("DOM loaded - Create Hunt");
+
+  // generate random hunt code
+  genHuntCode();
+
+});
