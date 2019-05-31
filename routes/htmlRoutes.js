@@ -7,8 +7,12 @@ module.exports = function (app) {
   });
 
   // Load create hunt page
-  app.get("/createHunt", function (req, res) {
+  app.get("/createHunt/", function (req, res) {
     res.render("createhunt");
+  });
+
+  app.get("/play", function (req, res) {
+    res.render("play");
   });
 
   // Render 404 page for any unmatched routes
