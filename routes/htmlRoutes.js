@@ -7,7 +7,7 @@ module.exports = function (app) {
   });
 
   // Load create hunt page
-  app.get("/createHunt", function (req, res) {
+  app.get("/createHunt/", function (req, res) {
     res.render("createhunt");
   });
 
