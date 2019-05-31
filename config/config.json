@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "root",
+    "password": "b00tcamp",
     "database": "vshunt_db",
     "host": "localhost",
     "dialect": "mysql"
