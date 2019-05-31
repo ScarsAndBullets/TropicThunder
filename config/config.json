@@ -1,6 +1,7 @@
 {
   "development": {
     "username": "root",
+
     "password": "root",
     "database": "vshunt_db",
     "host": "localhost",
