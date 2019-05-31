@@ -7,17 +7,17 @@ module.exports = function (sequelize, DataTypes) {
         len: [1]
       }
     },
-    huntType: {
+    huntCode: {
       type: DataTypes.STRING,
-      allowNull: true,
-      // validate: {
-      //   len: [1]
-      // }
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
     }
   });
 
   Hunt.associate = function (models) {
-    Hunt.hasMany(models.Stop);
+    Hunt.hasMany(models.Question);
   };
 
   return Hunt;

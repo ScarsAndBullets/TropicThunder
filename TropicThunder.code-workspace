@@ -1,6 +1,14 @@
 {
 	"folders": [
 		{
+			"name": "TropicThunder",
+			"path": "."
+		},
+		{
+			"name": "14-handlebars",
+			"path": "/Users/scarsbullets/Developer/uubc/sandbox/UTAHSAN201901FSF5/14-handlebars"
+		},
+		{
 			"name": "15-sequelize",
 			"path": "/Users/scarsbullets/Developer/uubc/sandbox/UTAHSAN201901FSF5/15-sequelize"
 		},
@@ -9,8 +17,8 @@
 			"path": "/Users/scarsbullets/Developer/uubc/sandbox/UTAHSAN201901FSF5/16-project-2"
 		},
 		{
-			"name": "TropicThunder",
-			"path": "."
+			"name": "17-project-2",
+			"path": "/Users/scarsbullets/Developer/uubc/sandbox/UTAHSAN201901FSF5/17-project-2"
 		}
 	],
 	"settings": {}

@@ -13,6 +13,7 @@ module.exports = function (app) {
 
   app.get("/play/", function (req, res) {
     res.render("play");
+
   });
 
   // Render 404 page for any unmatched routes

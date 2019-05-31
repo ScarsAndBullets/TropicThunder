@@ -1,6 +1,6 @@
 USE vshunt_db;
 
-INSERT INTO users (userName) VALUES ('John');
+INSERT INTO users (userName, createdAt, updatedAt) VALUES ('John', );
 INSERT INTO users (userName) VALUES ('Robyn');
 INSERT INTO users (userName) VALUES ('Brandon');
 INSERT INTO users (userName) VALUES ('Stewart');
