@@ -11,6 +11,10 @@ module.exports = function (app) {
     res.render("createhunt");
   });
 
+  app.get("/play", function (req, res) {
+    res.render("play");
+  });
+
   // Render 404 page for any unmatched routes
   app.get("*", function (req, res) {
     res.render("404");
