@@ -3,9 +3,6 @@ module.exports = function (sequelize, DataTypes) {
     huntCode: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [1]
-      }
     }
   });
 

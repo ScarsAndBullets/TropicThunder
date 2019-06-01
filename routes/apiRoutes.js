@@ -42,7 +42,7 @@ module.exports = function (app) {
   app.get("/api/question/:huntId", function (req, res) {
     db.Question.findOne({
       where: {
-        huntId: req.params.huntId
+        HuntId: req.params.huntId
       }
     }).then(function (data) {
       res.json(data);

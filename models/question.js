@@ -2,7 +2,7 @@ module.exports = function (sequelize, DataTypes) {
   var Question = sequelize.define("Question", {
     clue: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     }
   });
   Question.associate = function (models) {

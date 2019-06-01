@@ -9,12 +9,12 @@ var $submitQuestion = $("#submitQuestion");
 var $submitHunt = $("#submitHunt");
 
 var question = {
-  huntId: "",
+  HuntId: "",
   clue: $clue.val().trim()
 };
 
 var answers = {
-  questionId: "",
+  QuestionId: "",
   correctAns: $correctAns.val().trim(),
   wrongAnsOne: $wrongAnsOne.val().trim(),
   wrongAnsTwo: $wrongAnsTwo.val().trim(),
@@ -31,7 +31,7 @@ var API = {
       },
       type: "POST",
       url: "api/hunts",
-      data: JSON.stringify(Hunt)
+      data: JSON.stringify(data)
     });
   },
   // Get all hunt records - compare to generated huntCode
@@ -41,9 +41,9 @@ var API = {
       type: "GET"
     });
   },
-  getCurrentHunt: function (huntCode) {
+  getCurrentHunt: function (data) {
     return $.ajax({
-      url: "api/hunts/" + huntCode,
+      url: "api/hunts/" + data,
       type: "GET"
     });
   },
@@ -55,26 +55,26 @@ var API = {
       },
       type: "POST",
       url: "api/questions",
-      data: JSON.stringify(question)
+      data: JSON.stringify(data)
     });
   },
   // get all questions saved for given huntId
-  getQuestions: function (huntId) {
+  getQuestions: function (data) {
     return $.ajax({
-      url: "api/questions/" + huntId,
+      url: "api/questions/" + data,
       type: "GET"
     });
   },
-  getQuestionId: function (huntId) {
+  getQuestionId: function (data) {
     return $.ajax({
-      url: "api/questions/" + huntId,
+      url: "api/questions/" + data,
       type: "GET"
     });
   },
   // delete specific question and answer set
-  deleteQuestions: function (id) {
+  deleteQuestions: function (data) {
     return $.ajax({
-      url: "api/questions/" + id,
+      url: "api/questions/" + data,
       type: "DELETE"
     });
   },
@@ -86,7 +86,7 @@ var API = {
       },
       type: "POST",
       url: "api/questions",
-      data: JSON.stringify(answers)
+      data: JSON.stringify(data)
     });
   },
   getAnswers: function () {
@@ -101,14 +101,15 @@ var API = {
 function submitQuestion(event) {
   event.preventDefault();
 
-  question.huntId = huntId;
   question.clue = $clue.val().trim();
   console.log("stringified question obj " + JSON.stringify(question));
 
   API.saveQuestion(question).then(function () {
-    API.getQuestionId(huntId).then(function (data) {
+    API.getQuestionId(question.HuntId).then(function (data) {
+      console.log("question OBJ " + JSON.stringify(question))
+      console.log("huntId is " + question.HuntId)
       console.log("questionId is " + data.id)
-      answers.questionId = data.id;
+      answers.QuestionId = data.id;
       answers.correctAns = $correctAns.val().trim()
       answers.wrongAnsOne = $wrongAnsOne.val().trim()
       answers.wrongAnsTwo = $wrongAnsTwo.val().trim()
@@ -163,7 +164,6 @@ function genHuntCode() {
 
 // Validates huntCode is unique and then saves it to a new Hunts record
 function uniqueHuntCode() {
-  console.log("begin uniqueHuntCode function");
   API.getHunts().then(function (data) {
     console.log("Data from getHunts API call: " + JSON.stringify(data));
     var huntCodes = data.map(function (data) {
@@ -173,34 +173,30 @@ function uniqueHuntCode() {
     condition = true;
     while (condition) {
       condition = false;
-      if (huntCodes.includes(huntCode)) {
+      if (huntCodes.includes(Hunt.huntCode)) {
         condition = true;
-        huntCode = genHuntCode();
+        Hunt.huntCode = genHuntCode();
       }
     }
-    Hunt.huntCode = huntCode;
     console.log("Hunt object: " + JSON.stringify(Hunt));
     API.saveHunt(Hunt).then(function () {
-      console.log("end uniqueHuntCode function")
+      API.getCurrentHunt(Hunt.huntCode).then(function (data) {
+        console.log("Hunt ID for foreign key " + data.id);
+        question.HuntId = data.id;
+      })
     });
-    API.getCurrentHunt(huntCode).then(function (data) {
-      console.log("Hunt ID for foreign key " + data.id);
-      huntId = data.id;
-    })
   });
 }
 
-var huntCode;
 var Hunt = {
-  huntCode: huntCode
+  huntCode: ""
 }
-var huntId;
 
 $(document).ready(function () {
   console.log("DOM loaded - Create Hunt");
 
   // generate random hunt code
-  huntCode = genHuntCode();
+  Hunt.huntCode = genHuntCode();
 
   uniqueHuntCode();
 
