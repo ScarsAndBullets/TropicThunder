@@ -1,101 +1,124 @@
 // Get references to page elements
-// var $exampleText = $("#example-text");
-// var $exampleDescription = $("#example-description");
-// var $exampleList = $("#example-list");
-
 var $clue = $("#clue");
 var $correctAns = $("#correctAns");
 var $wrongAnsOne = $("#wrongAnsOne");
 var $wrongAnsTwo = $("#wrongAnsTwo");
 var $wrongAnsThree = $("#wrongAnsTwo");
-var $wrongAnsFour = $("#wrongAnsTwo");
 
+var $submitQuestion = $("#submitQuestion");
 var $submitHunt = $("#submitHunt");
-var $submitQuestion = $("submitQuestion");
 
-var questionList = [];
+var question = {
+  huntId: "",
+  clue: $clue.val().trim()
+};
+
+var answers = {
+  questionId: "",
+  correctAns: $correctAns.val().trim(),
+  wrongAnsOne: $wrongAnsOne.val().trim(),
+  wrongAnsTwo: $wrongAnsTwo.val().trim(),
+  wrongAnsThree: $wrongAnsThree.val().trim()
+}
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function (example) {
+  // After verifying huntCode val unique, save new record with huntCode
+  saveHunt: function (data) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
+      url: "api/hunts",
+      data: JSON.stringify(Hunt)
     });
   },
-  getExamples: function () {
+  // Get all hunt records - compare to generated huntCode
+  getHunts: function () {
     return $.ajax({
-      url: "api/examples",
+      url: "api/hunts",
       type: "GET"
     });
   },
-  deleteExample: function (id) {
+  getCurrentHunt: function (huntCode) {
     return $.ajax({
-      url: "api/examples/" + id,
+      url: "api/hunts/" + huntCode,
+      type: "GET"
+    });
+  },
+  // save question from form to new hunt
+  saveQuestion: function (data) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "api/questions",
+      data: JSON.stringify(question)
+    });
+  },
+  // get all questions saved for given huntId
+  getQuestions: function (huntId) {
+    return $.ajax({
+      url: "api/questions/" + huntId,
+      type: "GET"
+    });
+  },
+  getQuestionId: function (huntId) {
+    return $.ajax({
+      url: "api/questions/" + huntId,
+      type: "GET"
+    });
+  },
+  // delete specific question and answer set
+  deleteQuestions: function (id) {
+    return $.ajax({
+      url: "api/questions/" + id,
       type: "DELETE"
+    });
+  },
+  // saves answers associated with specific 
+  saveAnswers: function (data) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "api/questions",
+      data: JSON.stringify(answers)
+    });
+  },
+  getAnswers: function () {
+    return $.ajax({
+      url: "api/hunts",
+      type: "GET"
     });
   }
 };
 
-// refreshExamples gets new examples from the db and repopulates the list
-// var refreshExamples = function () {
-//   API.getExamples().then(function (data) {
-//     var $examples = data.map(function (example) {
-//       var $a = $("<a>")
-//         .text(example.text)
-//         .attr("href", "/example/" + example.id);
-
-//       var $li = $("<li>")
-//         .attr({
-//           class: "list-group-item",
-//           "data-id": example.id
-//         })
-//         .append($a);
-
-//       var $button = $("<button>")
-//         .addClass("btn btn-danger float-right delete")
-//         .text("ｘ");
-
-//       $li.append($button);
-
-//       return $li;
-//     });
-
-//     $exampleList.empty();
-//     $exampleList.append($examples);
-//   });
-// };
-
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-var submitQuestion = function (event) {
+// Submits a new question and corresponding answers
+function submitQuestion(event) {
   event.preventDefault();
 
-  var question = {
-    clue: $clue.val().trim(),
-    correctAns: $correctAns.val().trim(),
-    wrongAnsOne: $wrongAnsOne.val().trim(),
-    wrongAnsTwo: $wrongAnsTwo.val().trim(),
-    $wrongAnsThree: $$wrongAnsThree.val().trim()
-  };
+  question.huntId = huntId;
+  question.clue = $clue.val().trim();
+  console.log("stringified question obj " + JSON.stringify(question));
 
-  questionList.push(question);
+  API.saveQuestion(question).then(function () {
+    API.getQuestionId(huntId).then(function (data) {
+      console.log("questionId is " + data.id)
+      answers.questionId = data.id;
+      answers.correctAns = $correctAns.val().trim()
+      answers.wrongAnsOne = $wrongAnsOne.val().trim()
+      answers.wrongAnsTwo = $wrongAnsTwo.val().trim()
+      answers.wrongAnsThree = $wrongAnsThree.val().trim()
+      API.saveAnswers(answers).then(function () {
+        //populateQuestions();
+      })
+    })
+  })
 
-  if (!(question.clue && question.correctAns && question.wrongAnsOne && question.wrongAnsTwo && question.$wrongAnsThree)) {
-    alert("You must enter a question and four answers!");
-    return;
-  }
-
-  API.saveExample(example).then(function () {
-    refreshExamples();
-  });
-
-  $exampleText.val("");
-  $exampleDescription.val("");
 };
 
 var submitHunt = function (event) {
@@ -120,27 +143,11 @@ var submitHunt = function (event) {
   $exampleDescription.val("");
 };
 
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-// var handleDeleteBtnClick = function () {
-//   var idToDelete = $(this)
-//     .parent()
-//     .attr("data-id");
-
-//   API.deleteExample(idToDelete).then(function () {
-//     refreshExamples();
-//   });
-// };
-
 // Add event listeners to the submit and delete buttons
-// $submit.on("click", handleFormSubmit);
-// $exampleList.on("click", ".delete", handleDeleteBtnClick);
-
-
-
 $submitQuestion.click(submitQuestion);
 $submitHunt.click(submitHunt);
 
+// Generate random 9 digit hyphen-separated huntCode
 function genHuntCode() {
   var huntCode = "";
   for (var i = 0; i < 11; i++) {
@@ -150,15 +157,51 @@ function genHuntCode() {
       huntCode += Math.floor(Math.random() * 10);
     }
   }
-  console.log("huntCode = " + huntCode);
+  console.log("huntCode: " + huntCode);
   return huntCode;
 }
 
+// Validates huntCode is unique and then saves it to a new Hunts record
+function uniqueHuntCode() {
+  console.log("begin uniqueHuntCode function");
+  API.getHunts().then(function (data) {
+    console.log("Data from getHunts API call: " + JSON.stringify(data));
+    var huntCodes = data.map(function (data) {
+      return data.huntCode;
+    })
+    console.log("Current huntCodes: " + huntCodes);
+    condition = true;
+    while (condition) {
+      condition = false;
+      if (huntCodes.includes(huntCode)) {
+        condition = true;
+        huntCode = genHuntCode();
+      }
+    }
+    Hunt.huntCode = huntCode;
+    console.log("Hunt object: " + JSON.stringify(Hunt));
+    API.saveHunt(Hunt).then(function () {
+      console.log("end uniqueHuntCode function")
+    });
+    API.getCurrentHunt(huntCode).then(function (data) {
+      console.log("Hunt ID for foreign key " + data.id);
+      huntId = data.id;
+    })
+  });
+}
+
+var huntCode;
+var Hunt = {
+  huntCode: huntCode
+}
+var huntId;
 
 $(document).ready(function () {
   console.log("DOM loaded - Create Hunt");
 
   // generate random hunt code
-  genHuntCode();
+  huntCode = genHuntCode();
+
+  uniqueHuntCode();
 
 });
