@@ -2,22 +2,25 @@
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
         <br>
-        <img src="images/vsh_logo-betterVS.png" alt="hunt_logo">
+        <img class="center" src="images/vsh_logo-betterVS.png" alt="hunt_logo">
         <br>
-        <br>
-        <h3>Enter Code</h3>
         <form class="form-inline">
-          <div class="form-group">
+          <div class="md-form">
+            <h3 class="white-text">Enter Code</h3>
+
             {{!-- <label for="inputPassword6">Insert Game Code Here:</label> --}}
-            <input type="text" inputmode="numeric" minlength="9" maxlength="11" class="form-control mx-sm-3"
+            <input type="text" inputmode="numeric" minlength="9" maxlength="11" class="white-text form-control"
               aria-describedby="passwordHelpInline" id="tbNum" onkeyup="addHyphen(this)">
             {{!-- <small id="passwordHelpInline" class="text-muted">
               Must be 8-20 characters long.
             </small> --}}
-            <input type="button" value="Play" id="playHunt">
+            {{!-- <input type="button" value="Play" id="playHunt"> --}}
+
+            <button class="btn btn-indigo" id="add-button" value="Play" id="playHunt">Hunt!</button>
+            <div class="inline-ul text-center"></div>
           </div>
+
         </form>
       </div>
     </div>
@@ -29,7 +32,7 @@
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
-        <button id="createhuntbtn" type="button" class="btn btn-primary btn-lg">CREATE A HUNT</button>
+        <button id="createhuntbtn" type="button" class="btn btn-outline-white">CREATE YOUR OWN HUNT</button>
 
       </div>
     </div>

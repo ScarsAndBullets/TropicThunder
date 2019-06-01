@@ -1,86 +1,106 @@
-<div id="home" {{!-- class="view"
-style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/91.jpg'); background-repeat: no-repeat;
-background-size: cover; background-position: center center;" --}}>
-  {{!-- <div class="mask rgba-gradient align-items-center"> --}}
-
+<!-- Mask & flexbox options-->
+<header>
   <div class="container">
-    <div class="row">
-      {{!-- hard-coded ID. Will need to use handlebars for actual update --}}
-      <h5>Your Hunt Code is: 679586241</h5>
-    </div>
-    <div class="row">
-      <div class="col-8 offset-2">
-        {{!-- msg from htmlroutes --}}
-        <div class="text-center">
-          <h1>{{msg}}</h1>
-          <h2>Create your own hunt!</h2>
-          <br>
-        </div>
-        {{!-- <p>Create each step in the hunt with the form below.</p>
-        <p>Add as many steps/clues as you like! These can be in a smaller area (like a house) or even a city.</p>
-        <p>Enjoy creating your Virtual Scavenger Hunt!</p> --}}
-
-
-        <div class="row">
-          <div class="col">
-            <label for="example-text">
-              <h5>Step 1: Hint/Clue</h5>
-            </label>
-            {{!-- <p>(Don't forget to include any necessary instructions player will need for this clue.) </p> --}}
-            <input type="text" id="clue" class="form-control" aria-describedby="example-text"
-              placeholder="Don't forget instructions!">
-            <br>
-            <p>What is the player looking for? If the clue requires instructions for clarity, put it here.</p>
-
-          </div>
-          <div class="col">
-            <label for="example-text">
-              <h5>Step 2: Correct Answer</h5>
-            </label>
-            <input type="text" id="correctAns" class="form-control" aria-describedby="example-text"
-              placeholder="Correct Answer Here">
-          </div>
-          <div class="col">
-            <label for="example-text">
-              <h5>Step 3: Incorrect Answer</h5>
-            </label>
-            <input type="text" id="wrongAnsOne" class="form-control" aria-describedby="example-text"
-              placeholder="Wrong Answer 1">
-            <input type="text" id="wrongAnsTwo" class="form-control" aria-describedby="example-text"
-              placeholder="Wrong Answer 2">
-            <input type="text" id="wrongAnsThree" class="form-control" aria-describedby="example-text"
-              placeholder="Wrong Answer 3">
-          </div>
-
-        </div>
-        <br>
-        <div class="row">
-          <div class="col" id="add-button">
-            <button type="submit" id="submitQuestion" class="btn btn-secondary">Add Hunt Item!</button>
-          </div>
-        </div>
-
-
-        <br>
-        </form>
-        <hr>
-        <div>
-          <h3>Your Hunt So Far:</h3>
-          <div id="questionList">
-
-          </div>
-        </div>
-
+    <!--Grid row-->
+    <div class="row mt-5">
+      <!--Grid column-->
+      <div class="col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left">
+        <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">Make
+          your own VS Hunt! </h1>
+        <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
+        <h6 class="mb-3 wow fadeInLeft" data-wow-delay="0.3s">Fill out the form below however
+          you like, in whatever scale you like. This can be in a single home, an entire city
+          or any thing in between (or even above and beyond!). Remember, this is your Virtual
+          Scavenger Hunt, so have fun with it. Happy hunting!</h6>
       </div>
+      <!--Grid column-->
+      <!--Grid column-->
+      <div class="col-md-6 col-xl-5 mb-4">
+        <!--Form-->
+        <div class="card">
+          <div class=" card-body">
+            <!--Header-->
+            <div class="text-center">
+              <h2 class="white-text">
+                <i class="fas fa-edit white-text"></i> Create Your Hunt:</h2>
+              <hr class="hr-light">
+            </div>
+            <!--Body-->
+            <div class="text-center">
+              <h3 class="white-text">Your Hunt ID: </h3>
+              <h3 class="red-text">679 586 241</h3>
+              <p class="white-text">(Write this down to give to your players)</p>
+              <hr class="hr-light">
+            </div>
+            <div class="md-form">
+              <i class="fas fa-search prefix white-text active"></i>
+              <input type="text" id="clue" class="white-text form-control">
+              <label for="form3" class="active"> Hint/Clue/Question (Include any instructions)</label>
+            </div>
+            <div class="md-form">
+              <i class="fas fa-check-circle prefix white-text active"></i>
+              <input type="text" id="correctAns" class="white-text form-control">
+              <label for="form2" class="active"> Correct Answer</label>
+            </div>
+            <div class="md-form">
+              <i class="far fa-times-circle prefix white-text active"></i>
+              <input type="text" id="wrongAnsOne" class="white-text form-control">
+              <label for="form4"> Wrong Answer 1</label>
+            </div>
+            <div class="md-form">
+              <i class="far fa-times-circle prefix white-text active"></i>
+              <input type="text" id="wrongAnsTwo" class="white-text form-control">
+              <label for="form4"> Wrong Answer 2</label>
+
+            </div>
+            <div class="md-form">
+              <i class="far fa-times-circle prefix white-text active"></i>
+              <input type="text" id="wrongAnsThree" class="white-text form-control">
+              <label for="form4"> Wrong Answer 3</label>
+            </div>
+            <div class="text-center mt-4">
+              <button class="btn btn-outline-white" id="add-button">Add Hunt Item</button>
+              <div class="inline-ul text-center">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--/.Form-->
+      </div>
+      <!--Grid column-->
+    </div>
+    <!--Grid row-->
+  </div>
+  <hr class="hr-light">
+
+  <!-- Content -->
+</header>
+<main>
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col">
+        <h3 class="h1-responsive font-weight-bold white-text wow fadeInLeft" data-wow-delay="0.3s">Your Hunt So Far:
+        </h3>
+        <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
+
+        <div id="questionList">
+
+        </div>
+      </div>
+
     </div>
     <br>
-    <hr>
+    <br>
     <div class="row">
-      <button id="submit" class="btn btn-primary btn-block">Create Your Hunt!</button>
+      <button id="submit" class="btn btn-indigo btn-block">Create Your Hunt!</button>
     </div>
   </div>
-  {{!-- </div> --}}
-</div>
+</main>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="/js/createHunt.js"></script>
+
+
+{{!-- <script>
+  // Animations init
+  new WOW().init();
+
+</script> --}}
