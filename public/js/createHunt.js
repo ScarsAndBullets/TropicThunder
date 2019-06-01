@@ -5,16 +5,16 @@ var $wrongAnsOne = $("#wrongAnsOne");
 var $wrongAnsTwo = $("#wrongAnsTwo");
 var $wrongAnsThree = $("#wrongAnsTwo");
 
-var $submitQuestion = $("#submitQuestion");
-var $submitHunt = $("#submitHunt");
+var $submitQuestion = $("#add-button");
+var $submitHunt = $("#submit");
 
 var question = {
-  HuntId: "",
+  HuntId: "1",
   clue: $clue.val().trim()
 };
 
 var answers = {
-  QuestionId: "",
+  QuestionId: "1",
   correctAns: $correctAns.val().trim(),
   wrongAnsOne: $wrongAnsOne.val().trim(),
   wrongAnsTwo: $wrongAnsTwo.val().trim(),
@@ -97,6 +97,42 @@ var API = {
   }
 };
 
+function addQuestion(event) {
+  event.preventDefault();
+
+
+  var answers = {
+    QuestionId: "1",
+    correctAns: $correctAns.val().trim(),
+    wrongAnsOne: $wrongAnsOne.val().trim(),
+    wrongAnsTwo: $wrongAnsTwo.val().trim(),
+    wrongAnsThree: $wrongAnsThree.val().trim()
+  }
+
+
+  question.clue = $clue.val().trim();
+  console.log("stringified question obj " + JSON.stringify(question));
+
+  API.saveQuestion(question).then(function () {
+    API.getQuestionId(question.HuntId).then(function (data) {
+      console.log("question OBJ " + JSON.stringify(question))
+      console.log("huntId is " + question.HuntId)
+      console.log("questionId is " + data.id)
+      // answers.QuestionId = data.id;
+
+    })
+  })
+  answers.QuestionId = 1;
+  answers.correctAns = $correctAns.val().trim()
+  answers.wrongAnsOne = $wrongAnsOne.val().trim()
+  answers.wrongAnsTwo = $wrongAnsTwo.val().trim()
+  answers.wrongAnsThree = $wrongAnsThree.val().trim()
+  API.saveAnswers(answers).then(function () {
+    //populateQuestions();
+  })
+};
+
+
 // Submits a new question and corresponding answers
 function submitQuestion(event) {
   event.preventDefault();
@@ -109,17 +145,18 @@ function submitQuestion(event) {
       console.log("question OBJ " + JSON.stringify(question))
       console.log("huntId is " + question.HuntId)
       console.log("questionId is " + data.id)
-      answers.QuestionId = data.id;
-      answers.correctAns = $correctAns.val().trim()
-      answers.wrongAnsOne = $wrongAnsOne.val().trim()
-      answers.wrongAnsTwo = $wrongAnsTwo.val().trim()
-      answers.wrongAnsThree = $wrongAnsThree.val().trim()
-      API.saveAnswers(answers).then(function () {
-        //populateQuestions();
-      })
+      // answers.QuestionId = data.id;
+
     })
   })
-
+  answers.QuestionId = 1;
+  answers.correctAns = $correctAns.val().trim()
+  answers.wrongAnsOne = $wrongAnsOne.val().trim()
+  answers.wrongAnsTwo = $wrongAnsTwo.val().trim()
+  answers.wrongAnsThree = $wrongAnsThree.val().trim()
+  API.saveAnswers(answers).then(function () {
+    //populateQuestions();
+  })
 };
 
 var submitHunt = function (event) {
@@ -145,7 +182,7 @@ var submitHunt = function (event) {
 };
 
 // Add event listeners to the submit and delete buttons
-$submitQuestion.click(submitQuestion);
+$submitQuestion.click(addQuestion);
 $submitHunt.click(submitHunt);
 
 // Generate random 9 digit hyphen-separated huntCode
@@ -197,7 +234,7 @@ $(document).ready(function () {
 
   // generate random hunt code
   Hunt.huntCode = genHuntCode();
-
-  uniqueHuntCode();
+  $("#huntId").html(Hunt.huntCode);
+  // uniqueHuntCode();
 
 });
