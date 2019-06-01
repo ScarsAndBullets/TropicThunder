@@ -1,8 +1,7 @@
 {
   "development": {
     "username": "root",
-
-    "password": "Blue2008-sql",
+    "password": "b00tcamp",
     "database": "vshunt_db",
     "host": "localhost",
     "dialect": "mysql"
