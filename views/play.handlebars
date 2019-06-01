@@ -1,12 +1,64 @@
 <div id="play">
     <div id="container">
-        <div class="row">
+        {{!-- <div class="row">
             <div class="col-8 offset-2">
                 <div class="text-center">
                     <br>
                     <img class="center" src="images/vsh_logo-betterVS.png" alt="hunt_logo">
                     <br>
                     <br>
+                </div>
+            </div>
+        </div> --}}
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class=" card-body">
+                        <!--Header-->
+                        <div class="text-center">
+                            <h2 class="white-text">
+                                <i class="fas fa-search white-text"></i> Time to Hunt!</h2>
+                            <hr class="hr-light">
+                        </div>
+                        <!--Body-->
+                        <div class="text-center">
+                            <h3 class="white-text">Your Hunt ID: </h3>
+                            <h3 class="red-text" id="huntId">679 586 241</h3>
+                            <p class="white-text">(Write this down to give to your players)</p>
+                            <hr class="hr-light">
+                        </div>
+                        <div class="md-form">
+                            <i class="fas fa-search prefix white-text active"></i>
+                            <input type="text" id="clue" class="white-text form-control">
+                            <label for="form3" class="active"> Hint/Clue/Question (Include any instructions)</label>
+                        </div>
+                        <div class="md-form">
+                            <i class="fas fa-check-circle prefix white-text active"></i>
+                            <input type="text" id="correctAns" class="white-text form-control">
+                            <label for="form2" class="active"> Correct Answer</label>
+                        </div>
+                        <div class="md-form">
+                            <i class="far fa-times-circle prefix white-text active"></i>
+                            <input type="text" id="wrongAnsOne" class="white-text form-control">
+                            <label for="form4"> Wrong Answer 1</label>
+                        </div>
+                        <div class="md-form">
+                            <i class="far fa-times-circle prefix white-text active"></i>
+                            <input type="text" id="wrongAnsTwo" class="white-text form-control">
+                            <label for="form4"> Wrong Answer 2</label>
+
+                        </div>
+                        <div class="md-form">
+                            <i class="far fa-times-circle prefix white-text active"></i>
+                            <input type="text" id="wrongAnsThree" class="white-text form-control">
+                            <label for="form4"> Wrong Answer 3</label>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button class="btn btn-outline-white" id="add-button">Add Hunt Item</button>
+                            <div class="inline-ul text-center">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
